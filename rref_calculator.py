@@ -127,7 +127,7 @@ def matrixFunction():
 def variablesEqual():
     counter = 97
     for i in range(NUMROWS):
-        print("{} = {} ".format(chr(counter), inputMatrix[i][NUMCOLS-1]))
+        print("{} ≈ {} ".format(chr(counter), round(inputMatrix[i][NUMCOLS-1], 4)))
         counter = counter + 1
     
 
