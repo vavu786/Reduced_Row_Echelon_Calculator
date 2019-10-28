@@ -10,6 +10,7 @@
 #Happy reduced row echeloning!
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import numpy as np
+from fractions import Fraction
 
 #Lets the user input the # of rows and makes # columns = # rows +1.
 r = int(input("Number of rows: "))
@@ -127,7 +128,7 @@ def matrixFunction():
 def variablesEqual():
     counter = 97
     for i in range(NUMROWS):
-        print("{} ≈ {} ".format(chr(counter), round(inputMatrix[i][NUMCOLS-1], 4)))
+        print("{} ≈ {} ≈ {}".format(chr(counter), Fraction(inputMatrix[i][NUMCOLS-1]).limit_denominator(), round(inputMatrix[i][NUMCOLS-1], 4)))
         counter = counter + 1
     
 
