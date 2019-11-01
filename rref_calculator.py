@@ -10,20 +10,16 @@
 #Happy reduced row echeloning!
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import numpy as np
+import argparse
 from fractions import Fraction
 
-#Lets the user input the # of rows and makes # columns = # rows +1.
-r = int(input("Number of rows: "))
-inputMatrix = np.empty ([r, r+1], dtype = 'float')
-NUMROWS = np.size(inputMatrix, 0)
-NUMCOLS = NUMROWS + 1
-
-#Sets every entry in the array equal to the user input 
-for i in range(NUMROWS):
-    for j in range(NUMCOLS):
-        userInputEntry = input("Enter entry in row {} and column {}: ".format(i, j))
-        inputMatrix[i][j] = userInputEntry
-        
+def parse_args():
+    parser = argparse.ArgumentParser(prog='PROG')
+    parser.add_argument('-rownum', action='store', type=int)
+    parser.add_argument('-values', action='store', type=int, nargs='+')
+    args = parser.parse_args()
+    return args
+     
 #Multiplies a row and a scalar
 def multiplyRow(multiplier, rowNum):
     inputMatrix[rowNum,:] *= multiplier
@@ -134,7 +130,22 @@ def variablesEqual():
 
 #Main function where everything is run
 def main():
+    global inputMatrix
+    global NUMROWS
+    global NUMCOLS
+
+    args = parse_args()
+
+    listofValues = args.values
+    inputMatrix = np.empty([len(args.values)])
+    for i in range(len(args.values)):
+        inputMatrix[i] = listofValues[i]
+    inputMatrix = inputMatrix.reshape(args.rownum, args.rownum + 1)
+    NUMROWS = args.rownum
+    NUMCOLS = NUMROWS + 1
+    
     print("Your Matrix is: \n{}".format(inputMatrix))
+    print()
     print("This matrix represents the system of equations: ")
     matrixFunction()
     for i in range(NUMCOLS-1):
@@ -158,3 +169,4 @@ def main():
 #Calls the main function
 if __name__ == "__main__":
     main()
+
