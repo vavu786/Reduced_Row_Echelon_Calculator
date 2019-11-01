@@ -62,12 +62,8 @@ function runCalculation(rows, values)
 
       ele = document.createElement("TEXTAREA");
       ele.setAttribute("id", "RRE_Output");
-      ele.setAttribute("color", "lightgrey");
-      ele.color =  "lightgrey";
       ele.innerHTML = data.info.RRE;
       ele.readOnly = true;
-      ele.rows = 50;
-      ele.cols = 80;
       document.body.appendChild(ele);
   });
 }
