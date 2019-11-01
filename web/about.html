@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: lightgrey
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #161;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: purple;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f1f1;
+  min-width: 16px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+</style>
+</head>
+<body>
+<h1>The Reduced Row Echelon Form Calculator</h1>
+<div class="navbar">
+  <a href="index.html">RREF Calculator</a>
+  <a href="about.html">About the method</a>
+</div>
+  <h2>About the method</h2>
+  <p>The method used in this program is called Gauss-Jordan elimination. It is one of the most efficient ways to solve large systems of equations quickly. Let's start with this matrix: </p>
+  <p>( 3 7 4  3)</p>
+  <p>(-5 3 9 -1)</p>
+  <p>( 3 5 1  0)</p>
+  <p>First, multiply row 1 by 2: </p>
+  <ul>
+      <li>
+          R1*2 = (6, 14, 8, 6)
+      </li>
+  </ul>
+  <p>Then, add row 1 and row 2: </p>
+  <ul>
+      <li>
+          R1+R2= (1, 17, 17, 5)
+      </li>
+  </ul>
+  <p>The new matrix looks like this: </p>
+  <p>( 1 7 4  3)</p>
+  <p>(-5 3 9 -1)</p>
+  <p>( 3 5 1  0)</p>
+  <p>Now, the first entry has become a 1. This is the premise of Gauss-Jordan elimination. The end goal is to keep multiplying, dividing, and adding rows together get a matrix that looks like this: </p>
+  <p>(1 0 0 2.84)</p>
+  <p>(0 1 0 -2.14)</p>
+  <p>(0 0 1 2.18)</p>
+  <p>This could represent a system of equations that looks like this: </p>
+  <p>( 1a +7b +4c = 3)</p>
+  <p>(-1a +3b +9c = -1)</p>
+  <p>( 3a +5b +1c = 0)</p>
+  <p>And the solution would be: </p>
+  <p>(a = 2.84)</p>
+  <p>(b = -2.14)</p>
+  <p>(c = 2.18)</p>
+  <p>It is very systematic and easy to predict, and that makes it very powerful.</p>
+  
+</body>
+</html>
