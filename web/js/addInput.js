@@ -52,6 +52,7 @@ function getFields() {
 function runCalculation(rows, values)
 {
   deleteElements("RRE_Output");
+  deleteElements("next_line");
   $.getJSON('run-rre-calculation', { "Rows": rows, "MatrixValues": values }, function(data) {
       console.log(values);
       console.log(data.info);
