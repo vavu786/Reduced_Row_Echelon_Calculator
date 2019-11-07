@@ -16,7 +16,7 @@ from fractions import Fraction
 def parse_args():
     parser = argparse.ArgumentParser(prog='PROG')
     parser.add_argument('-rownum', action='store', type=int)
-    parser.add_argument('-values', action='store', type=int, nargs='+')
+    parser.add_argument('-values', action='store', type=float, nargs='+')
     args = parser.parse_args()
     return args
      
