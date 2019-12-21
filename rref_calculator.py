@@ -107,7 +107,7 @@ def RREF (colNum):
         if inputMatrix[colNum][colNum] != 1.0 and inputMatrix[colNum][colNum] != 0.0:
             if (np.count_nonzero(inputMatrix[i, :])) == 0:
                 return "zerorow"
-            if np.count_nonzero(inputMatrix[i, :] == 1 and inputMatrix[NUMROWS-1][NUMCOLS-1] != 0):
+            if np.count_nonzero(inputMatrix[i, :]) == 1 and inputMatrix[NUMROWS-1][NUMCOLS-1] != 0:
                 return "zerocol"
             print("Divide row {} by {}(end): ".format(colNum, inputMatrix[colNum][colNum]))
             multiplyRow((1/inputMatrix[colNum][colNum]), colNum)
