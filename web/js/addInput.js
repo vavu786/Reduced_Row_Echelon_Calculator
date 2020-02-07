@@ -3,7 +3,7 @@ var columns = null;
 
 function addFields() {
     rows = document.getElementById("nrows").value;
-    columns = parseInt(rows) + 1;
+    columns = document.getElementById("ncolumns").value;
     deleteElements("myTable")
     deleteElements("RRE_Output");
     deleteElements("RRE_Calc");
@@ -38,22 +38,23 @@ function getFields() {
     var table_values = [];
     var table = document.getElementById("myTable");
     var num_rows = table.rows.length
+    var num_cols = table.columns.length
     var table_values = ""
     for (i=0;i<num_rows;i++){
-        for (j=0;j<num_rows+1;j++){
+        for (j=0;j<num_cols;j++){
             var row = table.rows[i];
             var cell = row.childNodes[j].children[0].value;
             table_values = table_values + cell + " ";
         }
     }
-    runCalculation(rows, table_values)
+    runCalculation(rows, columns, table_values, show_equations)
 }
 
-function runCalculation(rows, values)
+function runCalculation(rows, columns, values, show_equations)
 {
   deleteElements("RRE_Output");
   deleteElements("next_line");
-  $.getJSON('run-rre-calculation', { "Rows": rows, "MatrixValues": values }, function(data) {
+  $.getJSON('run-rre-calculation', { "Rows": rows, "Columns": columns, "MatrixValues": values, "Show_equations": show_equations}, function(data) {
       console.log(values);
       console.log(data.info);
 
