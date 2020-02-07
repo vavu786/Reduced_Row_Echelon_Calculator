@@ -8,7 +8,7 @@ var myJSONObject = {};
 var RRE_Calculation = {};
 
 var run_rre_calculation = function(rows, values) {
-    exec('/usr/bin/python3 /home/hamzamian_patwa/Reduced_Row_Echelon_Calculator/rref_calculator.py -rownum ' + rows + ' -values ' + values, function (error, stdout, stderr) {
+    exec('/usr/bin/python3 /home/hamzamian_patwa/Reduced_Row_Echelon_Calculator/rref_calculator.py -rownum ' + rows + ' -colnum ' + columns + ' -values ' + values + ' -show_equations ' + show_equations, function (error, stdout, stderr) {
     if (error != null) {
       RRE_Calculation.info = { "RRE": error};
       RRE_Calculation.status = false;
