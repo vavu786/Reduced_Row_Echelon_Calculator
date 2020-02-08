@@ -21,7 +21,7 @@ def parse_args():
     parser.add_argument('-rownum', action='store', type=int)
     parser.add_argument('-colnum', action='store', type=int)
     parser.add_argument('-values', action='store', type=float, nargs='+')
-    parser.add_argument('-show_equations', action='store_false')
+    parser.add_argument('-show_equations', action='store_true')
     args = parser.parse_args()
     return args
 
@@ -36,9 +36,7 @@ def addRows(sourceRow, targetRow):
     inputMatrix[targetRow,:] += inputMatrix[sourceRow,:]
     
 def switchRows(row1, row2):
-    tempvar = inputMatrix[row1,:]
-    inputMatrix[row1,:] = inputMatrix[row2,:]
-    inputMatrix[row2,:] = tempvar
+    inputMatrix[[row1, row2]] = inputMatrix[[row2, row1]]
 
 #Checks a certain column if it is in RREF form
 def checkValueRREF(row, column):
@@ -61,6 +59,12 @@ def checkValueRREF(row, column):
 #Makes an input column into RREF
 def RREF (colNum):
     for i in range(NUMROWS):
+        if inputMatrix[colNum][colNum] == 0:
+            for j in range(i, NUMROWS):
+                if inputMatrix[j][colNum] != 0:
+                    print("Switch rows {} and {}: ".format(j, colNum))
+                    switchRows(j, colNum)
+                    print(inputMatrix)
         #Makes the diagonal entry 1 in that column
         if inputMatrix[colNum][colNum] != 1.0 and inputMatrix[colNum][colNum] != 0:
             print ("Divide row {} by {}(beg): ".format(colNum, inputMatrix[colNum][colNum]))
@@ -126,14 +130,15 @@ def main():
     
     print("Your Matrix is: \n{}".format(inputMatrix))
     print()
-    if args.show_equations is not None:
+    if args.show_equations is True:
         print("This matrix represents the system of equations: ")
         matrixFunction()
     for i in range(NUMROWS):
         ret = RREF(i)
     if ret == 1:
         print("RREF of your Matrix is: \n{}".format(inputMatrix))
-        variablesEqual()
+        if args.show_equations is True:
+            variablesEqual()
 
 #Calls the main function
 if __name__ == "__main__":

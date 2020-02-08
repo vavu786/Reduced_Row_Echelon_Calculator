@@ -7,8 +7,13 @@ var fs =  require('fs');
 var myJSONObject = {};
 var RRE_Calculation = {};
 
-var run_rre_calculation = function(rows, values) {
-    exec('/usr/bin/python3 /home/hamzamian_patwa/Reduced_Row_Echelon_Calculator/rref_calculator.py -rownum ' + rows + ' -colnum ' + columns + ' -values ' + values + ' -show_equations ' + show_equations, function (error, stdout, stderr) {
+var run_rre_calculation = function(rows, columns, values, show_equations) {
+    // If show_equations is True then pass it in as a parameter to the rref calculator.
+    var equations = ''
+    if (show_equations == 'True') {
+      equations = ' -show_equations';
+    }
+    exec('/usr/bin/python3 /home/hamzamian_patwa/Reduced_Row_Echelon_Calculator/rref_calculator.py -rownum ' + rows + ' -colnum ' + columns + ' -values ' + values + equations, function (error, stdout, stderr) {
     if (error != null) {
       RRE_Calculation.info = { "RRE": error};
       RRE_Calculation.status = false;
@@ -34,7 +39,7 @@ app.use(express.static('/home/hamzamian_patwa/Reduced_Row_Echelon_Calculator/web
 http.createServer(app).listen(8080);
 
 app.get('/run-rre-calculation', function (req, res) {
-  run_rre_calculation(req.query.Rows, req.query.MatrixValues);
+  run_rre_calculation(req.query.Rows, req.query.Columns, req.query.MatrixValues, req.query.ShowEquations);
   var refreshId = setInterval(function() {
       if (RRE_Calculation.status != null) {
         res.json(RRE_Calculation);
