@@ -5,7 +5,6 @@
 # Uses NumPy; custom matrix
 # Includes step by step instructions
 # I have a Java version as well without any matrix library
-# Note: The : means all the entries in that dimension. So inputMatrix[3,:] means the third row.
 # Created by Hamza Patwa
 # Happy reduced row echeloning!
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -67,7 +66,7 @@ def RREF(inputMatrix, colNum):
                     print(inputMatrix)
         # Makes the diagonal entry 1 in that column
         if inputMatrix[colNum][colNum] != 1.0 and inputMatrix[colNum][colNum] != 0:
-            print("Divide row {} by {}(beg): ".format(colNum, inputMatrix[colNum][colNum]))
+            print("Divide row {} by {}: ".format(colNum, inputMatrix[colNum][colNum]))
             multiplyRow(inputMatrix, 1 / inputMatrix[colNum][colNum], colNum)
             print(inputMatrix)
         # The if statement says that if the [colNum][colNum] is not 1 or any other value is not 0, run the RREF code
@@ -84,11 +83,9 @@ def RREF(inputMatrix, colNum):
             print(inputMatrix)
         # Makes the diagonal entry 1 again
         if inputMatrix[colNum][colNum] != 1.0 and inputMatrix[colNum][colNum] != 0.0:
-            print("Divide row {} by {}(end): ".format(colNum, inputMatrix[colNum][colNum]))
+            print("Divide row {} by {}: ".format(colNum, inputMatrix[colNum][colNum]))
             multiplyRow(inputMatrix, (1 / inputMatrix[colNum][colNum]), colNum)
             print(inputMatrix)
-        if i == (numrows - 1):
-            return 1
 
 
 def matrixToSysOfEqns(inputMatrix):
@@ -138,11 +135,11 @@ def main():
         print("This matrix represents the system of equations: ")
         matrixToSysOfEqns(inputMatrix)
     for i in range(numrows):
-        ret = RREF(inputMatrix, i)
-    if ret == 1:
-        print("RREF of your Matrix is: \n{}".format(inputMatrix))
-        if args.show_equations is True:
-            variablesEqual(inputMatrix)
+        RREF(inputMatrix, i)
+
+    print("RREF of your Matrix is: \n{}".format(inputMatrix))
+    if args.show_equations is True:
+        variablesEqual(inputMatrix)
 
 
 # Calls the main function
